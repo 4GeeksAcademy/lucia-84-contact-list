@@ -50,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(error);
 					});
 
-			}
+			},
 
 			deleteContact: (name,phone,email,address) => {
 

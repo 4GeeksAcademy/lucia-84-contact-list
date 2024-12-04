@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { Link } from 'react-router-dom'
 import { Context } from "../store/appContext.js";
-import ContactCard from "../component/ContactCard.js";
+import ContactCard from "../component/ContactCard";
 
-const Contacts = () => {
+const ContactsView = () => {
 
     const { store, actions } = useContext(Context)
     console.log(store.listContacts)
@@ -23,11 +23,11 @@ const Contacts = () => {
             <ul className="list-group mt-3">
                 {store.listContacts && store.listContacts.length > 0 && store.listContacts.map((contact, index) => {
                     return (
-                        <CardContact contact={contact} key={index} />
+                        <ContactCard contact={contact} key={index} />
                     )
                 })}
             </ul>
         </div>
     );
 };
-export default Contacts;
+export default ContactsView;

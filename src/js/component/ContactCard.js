@@ -70,3 +70,5 @@ alt="Picture" />
         </li>
     )
 }
+
+export default ContactCard
