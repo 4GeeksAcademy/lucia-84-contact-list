@@ -5,7 +5,7 @@ import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
-export const Contacts = () => {
+export const editContacts = () => {
 	const { store, actions } = useContext(Context);
 	console.log
 
@@ -42,4 +42,4 @@ export const Contacts = () => {
 	);
 };
 
-export default Contacts
+export default editContacts

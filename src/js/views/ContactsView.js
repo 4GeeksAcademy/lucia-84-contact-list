@@ -8,10 +8,6 @@ const ContactsView = () => {
     const { store, actions } = useContext(Context)
     console.log(store.listContacts)
 
-    useEffect(() => {
-        
-    }, [])
-
     return (
 
         <div className="w-75 mx-auto">
@@ -21,7 +17,7 @@ const ContactsView = () => {
                 </Link>
             </div>
             <ul className="list-group mt-3">
-                {store.listContacts && store.listContacts.length > 0 && store.listContacts.map((contact, index) => {
+                {store.listContact.map((contact, index) => {
                     return (
                         <ContactCard contact={contact} key={index} />
                     )
