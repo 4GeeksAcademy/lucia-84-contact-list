@@ -1,42 +1,81 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+			createAgenda: () => {
 
-				//reset the global store
-				setStore({ demo: demo });
+				fetch('https://playground.4geeks.com/contact/agendas/luciacanalda', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify()
+				})
+					.then(response => {
+						return response.json()
+					})
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => {
+						console.error(error);
+					});
+
+			}, 
+
+			createContact: (name,phone,email,address) => {
+
+				fetch('https://playground.4geeks.com/contact/agendas/luciacanalda/contacts', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						name: name,
+						phone: phone,
+						email: email,
+						address: address,
+					  })
+				})
+					.then(response => {
+						return response.json()
+					})
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => {
+						console.error(error);
+					});
+
+			}
+
+			deleteContact: (name,phone,email,address) => {
+
+				fetch('https://playground.4geeks.com/contact/agendas/luciacanalda/contacts', {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						name: name,
+						phone: phone,
+						email: email,
+						address: address,
+					  })
+				})
+					.then(response => {
+						return response.json()
+					})
+					.then(data => {
+						console.log(data);
+					})
+					.catch(error => {
+						console.error(error);
+					});
+
 			}
 		}
 	};

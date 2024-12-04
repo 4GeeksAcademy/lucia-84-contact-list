@@ -5,8 +5,9 @@ import { Context } from "../store/appContext";
 
 import "../../styles/demo.css";
 
-export const Demo = () => {
+export const Contacts = () => {
 	const { store, actions } = useContext(Context);
+	console.log
 
 	return (
 		<div className="container">
@@ -20,8 +21,7 @@ export const Demo = () => {
 							<Link to={"/single/" + index}>
 								<span>Link to: {item.title}</span>
 							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
+							{
 							item.background === "orange" ? (
 								<p style={{ color: item.initial }}>
 									Check store/flux.js scroll to the actions to see the code
@@ -41,3 +41,5 @@ export const Demo = () => {
 		</div>
 	);
 };
+
+export default Contacts;
