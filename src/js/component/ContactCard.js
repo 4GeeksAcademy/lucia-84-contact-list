@@ -13,22 +13,22 @@ const ContactCard = ({ contact }) => {
 
   return (
 
+<div className= "container mt-4">
+    <li className=" card list-group-item d-flex justify-content-center">
+      <div className="row no-gutters">
 
-    <li className="list-group-item d-flex justify-content-center">
-      <div className="d-flex align-items-center w-75" >
+        <div className= "card col-md-3 d-flex justify-content-center">
 
-        <div className="col-md-3 d-flex justify-content-center">
-
-          <img className="rounded-circle"
-            src=""
+          <img className="rounded-circle img-fluid md-5"
+            src="https://images.unsplash.com/photo-1468218457742-ee484fe2fe4c?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZhY2V8ZW58MHx8MHx8fDA%3D"
             alt="Picture" />
 
 
         </div>
 
         <div className="d-flex col-md-6">
-          <h4 className="card-title mb-1"> {contact.name} </h4>
-          <p className="card-text mb-1"> {contact.address} </p>
+          <h4 className="card-title"> {contact.name} </h4>
+          <p className="card-text"> {contact.address} </p>
           <p className="card-text mb-1"> {contact.phone} </p>
           <p className="card-text mb-1"> {contact.email} </p>
 
@@ -68,6 +68,7 @@ const ContactCard = ({ contact }) => {
         </div>
       </div>
     </li>
+    </div>
   )
 }
 
