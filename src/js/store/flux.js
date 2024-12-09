@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-listContact: []
+listContact: [],
+contactindividual : {}
 		},
 		actions: {
 
@@ -53,15 +54,15 @@ listContact: []
 			},
 
 			deleteContact: (id) => {
-                fetch(`https://playground.4geeks.com/contact/agendas/4geeks-user/contacts/${id}`, {
+                fetch(`https://playground.4geeks.com/contact/agendas/luciacanalda/contacts/${id}`, {
                     method: "DELETE",
                 })
                     .then((response) => {
                         console.log(response)
                         if (response.ok) {
                             const store = getStore();
-                            const updatedContacts = store.listContacts.filter(contact => contact.id !== id);
-                            setStore({ listContacts: updatedContacts });
+                            const updatedContacts = store.listContact.filter(contact => contact.id !== id);
+                            setStore({ listContact: updatedContacts });
                             console.log(`Contact with ID ${id} deleted`);
                         } else {
                             console.log("Error deleting contact");
@@ -71,7 +72,7 @@ listContact: []
             },
 
 
-			getContact: (name,phone,email,address) => {
+			getContact: () => {
 
 				fetch('https://playground.4geeks.com/contact/agendas/luciacanalda/contacts', {
 					method: 'GET',
@@ -89,14 +90,24 @@ listContact: []
 						return response.json()
 					})
 					.then(data => {
-						console.log(data);
+						// console.log(data);
 						setStore({listContact:data.contacts})
 					})
 					.catch(error => {
 						console.error(error);
 					});
 
-			}
+			},
+
+			updatecontactindvidual: (contact) => {
+
+				setStore({contactindividual:contact})
+
+
+			},
+
+
+
 		}
 	};
 };

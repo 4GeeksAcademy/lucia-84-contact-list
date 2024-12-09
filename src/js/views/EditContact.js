@@ -1,45 +1,77 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Context } from "../store/appContext"
 
-import { Context } from "../store/appContext";
+const EditContact = () => {
+    const params = useParams();
+    const navigate = useNavigate();
+    const { store, actions } = useContext(Context);
+	
 
-import "../../styles/demo.css";
+    const [editedContact, setEditedContact] = useState({
 
-export const editContacts = () => {
-	const { store, actions } = useContext(Context);
-	console.log
+name: "",
+phone: "",
+email: "",
+address: ""
+
+	})
+
+    useEffect(() => {
+        const contact = store.listContact.filter((e) => e.id == params.id)[0];        
+        setEditedContact(contact);  
+	
+
+    }, []);
 
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
-};
+		<div className='container text-center mt-5 d-flex justify-content-center flex-column'>
+		<h1 className='display-5 text-primary mb-5'>Contact ID: {params.id}</h1>
+		<form className='text-start'>
+			<div className="mb-3">
+				<label htmlFor="exampleInputPassword1" className="form-label fw-bold" >Full Name</label>
+				<input name="name" type="text" className="form-control" id="inputName" placeholder="Full Name" value={editedContact.name} onChange={(e) => {
+					setEditedContact((prevContact) => ({
+						...prevContact,
+						name: e.target.value 
+					}));
+				}} />
+			</div>
+			<div className="mb-3">
+				<label htmlFor="exampleInputPassword1" className="form-label fw-bold">Address</label>
+				<input type="text" className="form-control" id="inputAddress" placeholder="Enter address" value={editedContact.address} onChange={(e) => {
+					setEditedContact((prevContact) => ({
+						...prevContact,
+						address: e.target.value
+					}));
+				}} />
+			</div>
+			<div className="mb-3">
+				<label htmlFor="exampleInputEmail1" className="form-label fw-bold">Email</label>
+				<input type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Email" value={editedContact.email} onChange={(e) => {
+					setEditedContact((prevContact) => ({
+						...prevContact,
+						email: e.target.value
+					}));
+				}} />
 
-export default editContacts
+			</div>
+			<div className="mb-3">
+				<label htmlFor="exampleInputPassword1" className="form-label fw-bold">Phone</label>
+				<input type="text" className="form-control" id="inputPhone" placeholder="Enter phone" value={editedContact.phone} onChange={(e) => {
+					setEditedContact((prevContact) => ({
+						...prevContact,
+						phone: e.target.value 
+					}));
+				}}/>
+			</div>
+			<button type="submit" className="btn btn-primary mb-1 col-12" >Edit</button>
+			<Link to="/">
+				<p id="emailHelp" className="text">or get back to contacts</p>                    
+			</Link>
+		</form>
+	</div>
+)
+}
+
+export default EditContact
