@@ -19,7 +19,7 @@ const ContactCard = ({ contact }) => {
                             <div className="col-md-3 mt-3">
                                 <img
                                     id="imgContact"
-                                    src=""
+                                    src="https://images.unsplash.com/photo-1728577740843-5f29c7586afe?q=80&w=3880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                     className="img-fluid rounded-start"
                                     alt="..."
                                 />
@@ -55,9 +55,7 @@ const ContactCard = ({ contact }) => {
                                 >
                                     Editar Contacto
                                 </button>
-                                x
-
-                                < i className="bi bi-trash-fill" data-bs-toggle="modal" data-bs-target={`#deleteModal${contact.id}`}></i >
+                                < i className="fa-solid fa-trash" data-bs-toggle="modal" data-bs-target={`#deleteModal${contact.id}`}></i >
                                 <div className="modal" id={`deleteModal${contact.id}`} tabIndex="-1">
                                     <div className="modal-dialog">
                                         <div className="modal-content">

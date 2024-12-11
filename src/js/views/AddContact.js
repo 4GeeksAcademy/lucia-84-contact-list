@@ -12,10 +12,9 @@ const AddContact = () => {
 
     const {actions,store} = useContext(Context)
     const guardarContacto = (e)=> {
-
-e.preventDefault()
-
+e.preventDefault();
 actions.createContact(name,phone,email,address)
+navigate("/");
     }
 return (
 

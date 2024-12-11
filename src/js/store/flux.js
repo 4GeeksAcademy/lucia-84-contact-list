@@ -106,6 +106,34 @@ contactindividual : {}
 
 			},
 
+			editContact:(id, contact, navigate) =>{
+				let data = {
+					"name": contact.name,
+					"phone": contact.phone,
+					"email": contact.email,
+					"address": contact.address
+				}
+		
+				fetch(`https://playground.4geeks.com/contact/agendas/luciacanalda/contacts/${id}`, {
+					method: "PUT",
+					body: JSON.stringify(data),
+					headers: {
+						'Content-Type': 'application/json'
+					}
+				})
+					.then((response) => {
+						
+						return response.json()
+					})
+					.then((data) => {
+						console.log(data)
+						getActions().getContact()
+					    navigate("/")		
+					})
+					.catch((err) => { err })
+
+			}
+
 
 
 		}
