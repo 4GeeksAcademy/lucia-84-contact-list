@@ -27,6 +27,33 @@ contactindividual : {}
 
 			}, 
 
+			getContact: () => {
+
+				fetch('https://playground.4geeks.com/contact/agendas/luciacanalda/contacts', {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					// // body: JSON.stringify({
+					// 	name: name,
+					// 	phone: phone,
+					// 	email: email,
+					// 	address: address,
+					//   })
+				})
+					.then(response => {
+						return response.json()
+					})
+					.then(data => {
+						// console.log(data);
+						setStore({listContact:data.contacts})
+					})
+					.catch(error => {
+						console.error(error);
+					});
+
+			},
+
 			createContact: (name,phone,email,address) => {
 
 				fetch('https://playground.4geeks.com/contact/agendas/luciacanalda/contacts', {
@@ -42,6 +69,9 @@ contactindividual : {}
 					  })
 				})
 					.then(response => {
+						if (response.ok){
+							getContact()
+						}
 						return response.json()
 					})
 					.then(data => {
@@ -72,32 +102,7 @@ contactindividual : {}
             },
 
 
-			getContact: () => {
-
-				fetch('https://playground.4geeks.com/contact/agendas/luciacanalda/contacts', {
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					// // body: JSON.stringify({
-					// 	name: name,
-					// 	phone: phone,
-					// 	email: email,
-					// 	address: address,
-					//   })
-				})
-					.then(response => {
-						return response.json()
-					})
-					.then(data => {
-						// console.log(data);
-						setStore({listContact:data.contacts})
-					})
-					.catch(error => {
-						console.error(error);
-					});
-
-			},
+		
 
 			updatecontactindvidual: (contact) => {
 

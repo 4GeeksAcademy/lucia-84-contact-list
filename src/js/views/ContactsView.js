@@ -7,6 +7,9 @@ const ContactsView = () => {
 
     const { store, actions } = useContext(Context)
     // console.log(store.listContact)
+useEffect(()=> {
+actions.getContact()
+ }, [])
 
     return (
 
